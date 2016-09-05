@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
-  resources :tags
-  resources :projects
+  # resources :tags, only: [:index, :show]
+  resources :projects do
+    collection do
+      get 'tag', path: '/tag/:tag'
+    end
+  end
+
   resources :students
   resources :products
-  resources :products
-  resources :products
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'projects#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

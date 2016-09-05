@@ -17,8 +17,8 @@
   <dt>Description:</dt>
   <dd><%= @project.description %></dd>
 
-  <dt>Tag</dt>
-  <% @project.tag_list.each do |x| %>
-    <dd><%= link_to "##{x}" %></dd>
+  <dt>Tag:</dt>
+  <% @project.tag_list.each do |p| %>
+    <dd><%= link_to "##{p}" %></dd>
   <% end %>
 </dl>

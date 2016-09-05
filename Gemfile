@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'select2-rails'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

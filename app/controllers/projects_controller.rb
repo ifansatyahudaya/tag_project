@@ -1,15 +1,17 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_tag_collection, only: [:new, :edit]
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all  
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    # @tag = ActAsTaggableOn::Tag.find(params[:id])
+    # @projects = Project.tagged_with(@tag.name)
   end
 
   # GET /projects/new
@@ -41,6 +43,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    @project.tag_list.add(params[:project][:tag_list])
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -62,6 +65,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def tag
+    @projects = Project.tagged_with(params[:tag])
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -70,6 +78,10 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :description)
+      params.require(:project).permit(:name, :description, :tag_list)
+    end
+
+    def set_tag_collection
+      @tags_collection = Tag.all.collect {|t| [t.name, t.name]}
     end
 end
