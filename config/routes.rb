@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # resources :tags, only: [:index, :show]
   resources :projects do
     collection do
@@ -9,12 +10,14 @@ Rails.application.routes.draw do
   resources :students
   resources :products
 
+  get '/secret', to: 'pages#secret', as: :secret
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'projects#index'
+  # root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

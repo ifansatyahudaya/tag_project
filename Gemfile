@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'jquery-turbolinks'
+gem 'devise'
+gem 'bootstrap-sass'
 gem 'select2-rails'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'

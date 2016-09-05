@@ -16,3 +16,5 @@
 //= require bootstrap
 //= require_tree .
 //= require select2-full
+//= require jquery.turbolinks
+//= require bootstrap/dropdown
