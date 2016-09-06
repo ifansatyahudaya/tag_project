@@ -19,6 +19,6 @@
 
   <dt>Tag:</dt>
   <% @project.tag_list.each do |p| %>
-    <dd><%= link_to "##{p}" %></dd>
+    <dd><%= link_to "##{p}", tag_projects_path(p) %></dd>
   <% end %>
 </dl>
