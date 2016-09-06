@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
   #   devise_parameter_sanitizer.for(:sign_up) << :name
   #   devise_parameter_sanitizer.for(:account_update) << :name
   # end
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access Denied"
+    redirect_to root_url
+  end
 end

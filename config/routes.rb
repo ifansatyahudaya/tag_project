@@ -7,17 +7,17 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :students
   resources :products
-
-  get '/secret', to: 'pages#secret', as: :secret
+  root to: 'projects#index'
+  # devise_scope :user do
+  #   root :to => 'devise/sessions#new'
+  # end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'projects#index'
-  # root 'pages#index'
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
