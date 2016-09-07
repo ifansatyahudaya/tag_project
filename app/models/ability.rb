@@ -2,15 +2,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
     if user.present?
-      if user.role.name == 'super admin'
-        can :manage, :all          
-      elsif user.role.name == 'admin'
+      if user.role_id == Role::IDS[:SUPER_ADMIN]
         can :manage, :all
-      elsif user.role.name == 'user'
+      elsif user.role_id == Role::IDS[:ADMIN]
+        can :manage, Project
+      elsif user.role_id == Role::IDS[:USER]
         can :create, Project
-        can :read, :all                      
+        can :read, Project
       end        
     end
 
