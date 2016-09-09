@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to new_project_path, class: 'btn btn-primary' do %>
+  <%= link_to new_user_management_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     New User
   <% end %>
@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Role</th>
+        <th>Company</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -22,6 +23,7 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.role.try(:name) %></td>
+        <td><%= user.company.try(:name) %></td>
         <td><%= link_to 'Edit' %></td>
         <td><%= link_to 'Delete' %></td>
       <% end %>

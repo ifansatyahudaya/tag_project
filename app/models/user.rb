@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   attr_accessor :company_name, :company_subdomain
+  validates :name, :email, :password, :password_confirmation, presence: true
   belongs_to :company
   belongs_to :role
   has_many :projects
@@ -27,7 +28,7 @@ class User < ActiveRecord::Base
   private
 
   def set_role
-    self.role_id ||= Role::IDS[:USER]
+    self.role_id ||= Role::IDS[:ADMIN]
   end
 
   def set_company
