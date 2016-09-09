@@ -1,7 +1,9 @@
 <div class="page-header">
-  <%= link_to new_project_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Project
+  <% if can?(:create, Project) %>
+    <%= link_to new_project_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+        New Project
+    <% end %>
   <% end %>
   <% if action_name.eql?('tag') %>
     <h1>

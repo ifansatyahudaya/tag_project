@@ -6,7 +6,12 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all  
+    role = Role.first
+    if current_user.role_id == role.id
+      @projects = Project.all  
+    else
+      @projects = Project.by_company_id(current_user.company_id)  
+    end
   end
 
   # GET /projects/1
@@ -29,6 +34,8 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    @project.user_id = current_user.id
+    @project.company_id = current_user.company_id
     @project.tag_list.add(params[:project][:tag_list])
     
     respond_to do |format|

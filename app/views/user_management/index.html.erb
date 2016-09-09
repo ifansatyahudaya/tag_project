@@ -1,5 +1,9 @@
-<div class="page-header"> 
-  <h1>Listing users</h1>
+<div class="page-header">
+  <%= link_to new_project_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New User
+  <% end %>
+    <h1>Listing users</h1>
 </div>
 
 <div class="table-responsive">
@@ -9,14 +13,17 @@
         <th>Name</th>
         <th>Email</th>
         <th>Role</th>
+        <th colspan="2"></th>
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @users) do |user| %>
-        <td><%= link_to user.name, user %></td>
+        <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.role.try(:name) %></td>
+        <td><%= link_to 'Edit' %></td>
+        <td><%= link_to 'Delete' %></td>
       <% end %>
     </tbody>
   </table>

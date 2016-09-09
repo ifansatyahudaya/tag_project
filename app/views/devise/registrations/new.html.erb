@@ -1,10 +1,10 @@
 <% header "Sign Up" %>
-<h1>Sign Up</h1>
+<h1>Register Company</h1>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="form-group">
-    <%= f.label :name %><br />
+    <%= f.label :Your_name%><br />
     <%= f.text_field :name %>
   </div>
 
@@ -24,6 +24,16 @@
   <div class="form-group">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :company_name  %><br />
+    <%= f.text_field :company_name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :company_subdomain %><br />
+    <%= f.text_field :company_subdomain %>
   </div>
 
   <%= f.submit "Sign up", class: 'btn btn-primary' %>
