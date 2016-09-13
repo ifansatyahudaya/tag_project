@@ -5,13 +5,15 @@ class User < ActiveRecord::Base
   validates :name, :email, :password, :password_confirmation, presence: true
   belongs_to :company
   belongs_to :role
-  has_many :projects
+  has_many :projects, dependent: :destroy
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   before_create :set_role
   after_create :set_company
+  scope :all_except, ->(user) { where.not(id: user) }
+  scope :by_company_id, -> (id) { where(company_id: id) }
 
   def is_super_admin?
     self.role_id == Role::IDS[:SUPER_ADMIN]

@@ -6,8 +6,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    role = Role.first
-    if current_user.role_id == role.id
+    if current_user.role.name == "super admin"
       @projects = Project.all  
     else
       @projects = Project.by_company_id(current_user.company_id)  

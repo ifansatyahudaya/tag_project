@@ -1,7 +1,11 @@
 class UserManagementController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   def index
-    @users = User.all 
+    if current_user.role.name == "super admin"
+      @users = User.all_except(current_user)  
+    else
+      @users = User.by_company_id(current_user.company_id)  
+    end
   end
 
   def new
@@ -10,11 +14,11 @@ class UserManagementController < ApplicationController
 
   def create
     @user = User.new(user_params)
-      if @user.save
-        redirect_to root_path    
-      else
-        render 'new'
-      end  
+    if @user.save
+      redirect_to root_path    
+    else
+      render 'new'
+    end  
   end
   
   private

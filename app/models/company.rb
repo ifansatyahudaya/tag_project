@@ -1,4 +1,4 @@
 class Company < ActiveRecord::Base
-  has_many :users  
-  has_many :projects
+  has_many :users, dependent: :destroy
+  has_many :projects, dependent: :destroy
 end

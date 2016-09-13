@@ -6,7 +6,7 @@ class Ability
       if user.role_id == Role::IDS[:SUPER_ADMIN]
         can :read, :all
       elsif user.role_id == Role::IDS[:ADMIN]
-        can :manage, Project
+        can :manage, :all
       elsif user.role_id == Role::IDS[:USER]
         can :create, Project
         can :read, Project
