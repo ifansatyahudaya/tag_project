@@ -3,7 +3,11 @@
     <span class="glyphicon glyphicon-plus"></span>
     New User
   <% end %>
-    <h1>Listing users</h1>
+    <h1>
+    Listing users in
+    <%= current_user.company.try(:name) %>
+    Company  
+    </h1>
 </div>
 
 <div class="table-responsive">
@@ -20,7 +24,7 @@
 
     <tbody>
       <%= content_tag_for(:tr, @users) do |user| %>
-        <td><%= user.name %></td>
+        <td><%= link_to user.name, user_management_path(user.id) %></td>
         <td><%= user.email %></td>
         <td><%= user.role.try(:name) %></td>
         <td><%= user.company.try(:name) %></td>

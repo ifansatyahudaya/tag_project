@@ -9,6 +9,7 @@ class Ability
         can :manage, :all
       elsif user.role_id == Role::IDS[:USER]
         can :create, Project
+        can :tag, Project
         can :read, Project
       end        
     end

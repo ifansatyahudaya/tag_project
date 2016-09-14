@@ -78,6 +78,10 @@ class ProjectsController < ApplicationController
     render :index
   end
 
+  def is_super_admin?
+    self.role_id == Role::IDS[:SUPER_ADMIN]
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
