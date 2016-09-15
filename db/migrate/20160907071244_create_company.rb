@@ -6,3 +6,5 @@ class CreateCompany < ActiveRecord::Migration
     end
   end
 end
+
+

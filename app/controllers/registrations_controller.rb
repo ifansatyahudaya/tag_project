@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+  class RegistrationsController < Devise::RegistrationsController
   protected
 
   def sign_up_params

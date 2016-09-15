@@ -25,7 +25,6 @@ class UserManagementController < ApplicationController
   end
 
   def show
-    
   end
 
   def edit

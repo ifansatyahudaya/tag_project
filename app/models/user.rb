@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
   def set_company
     if self.company_id == nil
-        company = Company.create(name: self.company_name, subdomain: self.company_subdomain)  
+      company = Company.create(name: self.company_name, subdomain: self.company_subdomain)  
       self.company_id = company.id
       self.save
     end

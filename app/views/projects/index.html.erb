@@ -21,33 +21,33 @@
       <tr>
             <th>Name</th>
             <th>Description</th>
-            <th>Tag</th>
-            <% if can?(:update, Project) || can?(:destroy, Project) %>
-              <th colspan="2">Action</th>
-            <% end %>
             <% if can? :read, Project %>
               <th>User / Owner</th>
               <th>Company</th>
             <% end %>
+            <th>Tag</th>
+            <% if can?(:update, Project) || can?(:destroy, Project) %>
+              <th colspan="2">Action</th>
+            <% end %>            
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @projects) do |project| %>
-            <!-- <td><%= project.name %></td> -->
-            <td><%= link_to project.name, project %></td>
-            <td><%= project.description %></td>
-            <td><%= raw project.tag_list.map { |p| link_to p, tag_projects_path(p) }.join(', ') %></td>
+          <!-- <td><%= project.name %></td> -->
+          <td><%= link_to project.name, project %></td>
+          <td><%= project.description %></td>    
+        <% if can? :read, Project %>
+            <td><%= project.user.try(:name) %></td>
+            <td><%= project.company.try(:name) %></td>
+        <% end %>
+        <td><%= raw project.tag_list.map { |p| link_to p, tag_projects_path(p) }.join(', ') %></td>
         <% if can? :update, Project %>
           <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <% end %>
         <% if can? :destroy, Project %>
           <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-        <% if can? :read, Project %>
-            <td><%= project.user.try(:name) %></td>
-            <td><%= project.company.try(:name) %></td>
-        <% end %>
+        <% end %>        
       <% end %>
     </tbody>
   </table>
