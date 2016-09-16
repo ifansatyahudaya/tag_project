@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :set_tag_collection, only: [:new, :edit]
+  before_action :set_tag_collection, :set_users_collection, only: [:new, :edit, :create, :update]
   before_action :authenticate_user!
   load_and_authorize_resource
   # GET /projects
@@ -39,6 +39,7 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       if @project.save
+        @project.user_ids = params[:project][:user_ids]
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -54,6 +55,7 @@ class ProjectsController < ApplicationController
     @project.tag_list.add(params[:project][:tag_list])
     respond_to do |format|
       if @project.update(project_params)
+        @project.user_ids = params[:project][:user_ids]
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -78,10 +80,6 @@ class ProjectsController < ApplicationController
     render :index
   end
 
-  def is_super_admin?
-    self.role_id == Role::IDS[:SUPER_ADMIN]
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -90,10 +88,14 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :description, :tag_list)
+      params.require(:project).permit(:name, :description, tag_list: [])
     end
 
     def set_tag_collection
       @tags_collection = Tag.all.collect {|t| [t.name, t.name]}
+    end
+
+    def set_users_collection
+      @users_collection = User.by_company_id(current_user.company_id).where.not(id: current_user.id).collect {|c| [c.name, c.id]}  
     end
 end

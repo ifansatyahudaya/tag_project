@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   belongs_to :role
   has_many :projects, dependent: :destroy
   
+  has_many :project_users, autosave: false
+  has_many :shared_projects, through: :project_users, foreign_key: :project_id
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -40,5 +43,4 @@ class User < ActiveRecord::Base
       self.save
     end
   end
-end
-
+end 
