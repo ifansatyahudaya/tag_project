@@ -29,7 +29,7 @@
         <td><%= user.role.try(:name) %></td>
         <td><%= user.company.try(:name) %></td>
         <td><%= link_to 'Edit', edit_user_management_path(user.id) %></td>
-        <td><%= link_to 'Delete' %></td>
+        <td><%= link_to 'Destroy', user_management_path(user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tbody>
   </table>

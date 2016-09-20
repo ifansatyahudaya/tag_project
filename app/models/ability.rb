@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     if user.present?
       if user.role_id == Role::IDS[:SUPER_ADMIN]
-        can :manage, :all
+        can :read, :all
       elsif user.role_id == Role::IDS[:ADMIN]
         can :manage, :all
       elsif user.role_id == Role::IDS[:USER]
