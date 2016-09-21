@@ -1,4 +1,4 @@
-gem 'rails_12factor', group: :productiongem 'rails_12factor', group: :productionsource 'https://rubygems.org'
+source 'https://rubygems.org'
  
 gem 'cancancan', '~> 1.10'  
 gem 'devise'
@@ -28,7 +28,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "binding_of_caller"
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
