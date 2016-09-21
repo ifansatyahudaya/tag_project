@@ -4,7 +4,7 @@ class UserManagementController < ApplicationController
 
   def index
     if current_user.role.name == "super admin"
-      @users = User.all_except(current_user)  
+      @users = User.all_except(current_user).order(role_id: :asc).order(company_id: :asc)  
     elsif current_user.role.name == "admin"
       @users = User.all_except(current_user).by_company_id(current_user.company_id)  
     end
