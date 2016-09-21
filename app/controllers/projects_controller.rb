@@ -7,9 +7,9 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     if current_user.role.name == "super admin"
-      @projects = Project.all  
+      @projects = Project.all.order(user_id: :asc)  
     elsif current_user.role.name == "admin"
-      @projects = Project.by_company_id(current_user.company_id).order(updated_at: :asc)  
+      @projects = Project.by_company_id(current_user.company_id).order(updated_at: :desc)  
     else
       @projects = Project.joins(:project_users).where("project_users.user_id = :user_id OR projects.user_id = :user_id", user_id: current_user.id).order(updated_at: :desc)
     end
@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
   def show
     # @tag = ActAsTaggableOn::Tag.find(params[:id])
     # @projects = Project.tagged_with(@tag.name)
+    @project.update(updated_at: Time.now)
   end
 
   # GET /projects/new
