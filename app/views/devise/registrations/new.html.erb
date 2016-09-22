@@ -1,7 +1,12 @@
 <% header "Sign Up" %>
 <h1>Register Company</h1>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <% if resource.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <%= devise_error_messages! %>  
+    </div>   
+  <% end %>
 
   <div class="form-group">
     <%= f.label :name, "Your Name" %><br />
