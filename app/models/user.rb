@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
   validates :name, :email, :password, :password_confirmation, presence: true
   belongs_to :company
   belongs_to :role
-  has_many :projects, dependent: :destroy
-  
+
+  has_many :projects, dependent: :destroy 
   has_many :project_users, autosave: false
-  has_many :shared_projects, through: :project_users, foreign_key: :project_id
+  has_many :shared_projects, through: :project_users, 
+    foreign_key: :project_id, source: :project
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

@@ -6,5 +6,3 @@ class CreateProjectsUsers < ActiveRecord::Migration
     end
   end
 end
-
-

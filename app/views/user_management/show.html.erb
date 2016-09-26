@@ -21,5 +21,12 @@
   <dd><%= @user.role.name %></dd>
 
   <dt>Company:</dt>
-  <dd><%= @user.company.name %></dd>    
+  <dd><%= @user.company.name %></dd>   
+
+  <dt>Related:</dt>
+  <dd>
+    <% @user.shared_projects.each do |project| %>
+      One of my project is <%= project.name %><br />
+    <% end %>
+  </dd> 
 </dl>

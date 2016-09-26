@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914062230) do
+ActiveRecord::Schema.define(version: 20160923031003) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "subdomain"
   end
+
+  create_table "detail_type_tags", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "detail_name"
+    t.integer  "type_tag_id"
+  end
+
+  add_index "detail_type_tags", ["type_tag_id"], name: "index_detail_type_tags_on_type_tag_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +34,16 @@ ActiveRecord::Schema.define(version: 20160914062230) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "project_type_tags", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "tag_id"
+    t.integer  "type_tag_id"
+  end
+
+  add_index "project_type_tags", ["tag_id"], name: "index_project_type_tags_on_tag_id"
+  add_index "project_type_tags", ["type_tag_id"], name: "index_project_type_tags_on_type_tag_id"
 
   create_table "project_users", force: :cascade do |t|
     t.integer "project_id"
@@ -78,6 +97,12 @@ ActiveRecord::Schema.define(version: 20160914062230) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "type_tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "type_name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
