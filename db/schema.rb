@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923031003) do
+ActiveRecord::Schema.define(version: 20160926071906) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -34,16 +34,6 @@ ActiveRecord::Schema.define(version: 20160923031003) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "project_type_tags", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "tag_id"
-    t.integer  "type_tag_id"
-  end
-
-  add_index "project_type_tags", ["tag_id"], name: "index_project_type_tags_on_tag_id"
-  add_index "project_type_tags", ["type_tag_id"], name: "index_project_type_tags_on_type_tag_id"
 
   create_table "project_users", force: :cascade do |t|
     t.integer "project_id"
@@ -70,6 +60,16 @@ ActiveRecord::Schema.define(version: 20160923031003) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "tag_data_types", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "type_tag_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "tag_data_types", ["tag_id"], name: "index_tag_data_types_on_tag_id"
+  add_index "tag_data_types", ["type_tag_id"], name: "index_tag_data_types_on_type_tag_id"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

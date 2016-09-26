@@ -1,6 +1,6 @@
 class TypeTag < ActiveRecord::Base
-  has_many :detail_type_tags, dependent: :destroy
   # has_many :project_type_tags, dependent: :destroy
-  has_many :project_type_tags
-  has_many :tags, through: :project_type_tags
+  has_many :detail_type_tags, dependent: :destroy
+  has_many :tag_data_types
+  has_many :tags, through: :tag_data_types
 end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :detail_type_tag
   resources :user_management, :products
   root to: 'projects#index'
 
