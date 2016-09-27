@@ -1,5 +1,6 @@
 class UserManagementController < ApplicationController
   before_action :set_role_collection, only: [:new, :edit, :create]
+  before_action :set_projects_collection, only: [:new, :edit, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -62,5 +63,9 @@ class UserManagementController < ApplicationController
 
   def set_role_collection
     @role_collection = Role.where.not(id: Role::IDS[:SUPER_ADMIN]).collect {|r| [r.name, r.id]}  
+  end
+
+  def set_projects_collection
+    @projects_collection = Project.by_company_id(current_user.company_id).collect {|c| [c.name, c.id]}  
   end
 end
