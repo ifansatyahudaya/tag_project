@@ -1,3 +1,3 @@
-class AddTypeTagToIdTags < ActiveRecord::Migration
+class AddTypeTagIdToTags < ActiveRecord::Migration
 
 end
