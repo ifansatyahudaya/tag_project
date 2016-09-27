@@ -1,2 +1,2 @@
-class CreateDetailTypeTags < ActiveRecord::Migartion
+class CreateDetailTypeTags < ActiveRecord::Migration
 end
