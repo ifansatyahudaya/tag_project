@@ -11,18 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926132441) do
+ActiveRecord::Schema.define(version: 20160914062230) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "subdomain"
-  end
-
-  create_table "detail_type_tags", force: :cascade do |t|
-    t.integer  "type_tag_id",    null: false
-    t.string   "type_tag_value"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -82,16 +75,9 @@ ActiveRecord::Schema.define(version: 20160926132441) do
   create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
-    t.integer "type_tag_id"
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
-
-  create_table "type_tags", force: :cascade do |t|
-    t.string   "type_tag_name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
