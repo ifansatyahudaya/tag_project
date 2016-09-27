@@ -39,6 +39,11 @@
                 <%= link_to "Users", user_management_index_path %>
             </li>
           <% end %>
+          <% if can? :manage, TypeTag %>
+            <li>
+                <%= link_to "Type Tag", new_type_tag_path %>
+            </li>
+          <% end %>
         </ul>
 
         

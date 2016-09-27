@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>Set Type Tag</h1>
+</div>
+
+<%= form_for(:type_tag, url: type_tags_path, method: :post, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <div class="form-group">
+      <%= f.label :tag_id, 'Tag', class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.select :tag_id, @tags_collection, {}, { class: 'js-select2 form-control' } %>
+        </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :type_tag_id, 'Type Tag', class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select :type_tag_id, @type_tags_collection, {}, class: 'js-select2 form-control' %>  
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :javascript_in_body do %>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
+      $(".js-select2").select2();
+    });
+  <% end %>
+<% end %>

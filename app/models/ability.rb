@@ -5,8 +5,10 @@ class Ability
     if user.present?
       if user.role_id == Role::IDS[:SUPER_ADMIN]
         can :read, :all
+        can :manage, TypeTag
       elsif user.role_id == Role::IDS[:ADMIN]
-        can :manage, :all
+        can :manage, Project
+        can :manage, User
       elsif user.role_id == Role::IDS[:USER]
         # can :create, Project
         # can :tag, Project

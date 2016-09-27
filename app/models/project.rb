@@ -8,8 +8,10 @@ class Project < ActiveRecord::Base
 
   has_many :project_users
   has_many :users, through: :project_users
-  # has_many :project_type_tags, dependent: :destroy
-  # has_many :type_tags, through: :project_type_tags
+
+  def tags
+    Tag.where(id: self.tag_ids)
+  end
 
   scope :by_company_id, -> (id) { where(company_id: id) }
 end

@@ -10,22 +10,38 @@
   <h1>Show project</h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @project.name %></dd>
-
-  <dt>Description:</dt>
-  <dd><%= @project.description %></dd>
-
-  <dt>Tag:</dt>
-  <% @project.tag_list.each do |p| %>
-    <dd><%= link_to "##{p}", tag_projects_path(p) %></dd>
-  <% end %>
-
-  <dt>Related:</dt>
-  <dd>
-    <% @project.users.each do |user| %>
-      Hi my name is <%= user.name %> <br />
+<div class='row'>
+  <div class='col-xs-2 text-right'>Name : </div>
+  <div class='col-xs-9 text-left'><%= @project.name %></div>
+</div>
+<div class='row'>
+  <div class='col-xs-2 text-right'>Description : </div>
+  <div class='col-xs-9 text-left'><%= @project.description %></div>
+</div>
+<div class='row'>
+  <div class='col-xs-2 text-right'>Tag : </div>
+  <div class='col-xs-9 text-left'>
+    <% @project.tags.have_tag_type.each do |tag| %>
+      <div class='row'>
+        <div class='col-xs-12'>
+          <%= link_to "##{tag.name}", tag_projects_path(tag.name) %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-xs-12 label-wrapper'>
+          <% tag.type_tag.detail_type_tags.each do |detail_type_tag| %>
+            <span class="label label-success"><%= "#{detail_type_tag.type_tag_value} #{tag.type_tag.type_tag_name}" %> </span>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  </dd>
-</dl>
+  </div>    
+</div>
+<div class='row'>
+  <div class='col-xs-2 text-right'>Shared To : </div>
+  <div class='col-xs-9 text-left'>
+    <% @project.users.each do |user| %>
+      <%= user.name %> <br />
+    <% end %>
+  </div>
+</div>

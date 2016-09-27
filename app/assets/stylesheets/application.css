@@ -18,3 +18,15 @@
   @import "bootstrap";
   @import 'bootstrap/theme';
  */
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.label-wrapper > .label {
+  margin-right: 5px;
+}

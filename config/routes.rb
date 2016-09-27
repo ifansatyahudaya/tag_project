@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :detail_type_tag
-  resources :user_management, :products
+  resources :type_tags
+  resources :user_management
   root to: 'projects#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
