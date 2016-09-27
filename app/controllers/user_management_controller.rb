@@ -22,7 +22,8 @@ class UserManagementController < ApplicationController
       redirect_to user_management_index_path    
     else
       render 'new'
-    end  
+    end 
+    asdasda 
   end
 
   def show
@@ -58,7 +59,7 @@ class UserManagementController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_id)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_id, { project_ids: [] })
   end
 
   def set_role_collection
