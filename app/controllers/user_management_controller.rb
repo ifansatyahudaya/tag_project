@@ -23,7 +23,6 @@ class UserManagementController < ApplicationController
     else
       render 'new'
     end 
-    asdasda 
   end
 
   def show
