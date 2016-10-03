@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :dashboards
   resources :type_tags
   resources :user_management
   root to: 'projects#index'

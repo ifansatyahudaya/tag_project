@@ -12,15 +12,15 @@ class TypeTagsController < ApplicationController
 
   private
 
-  def params_type_tag
-    params.require(:type_tag).permit(:tag_id, :type_tag_id)
-  end
-  
-  def set_tag_collection
-    @tags_collection = Tag.all.collect {|t| [t.name, t.id]}
-  end
- 
-  def set_type_tags_collection
-    @type_tags_collection = TypeTag.all.collect {|t| [t.type_tag_name, t.id]}
-  end
+    def params_type_tag
+      params.require(:type_tag).permit(:tag_id, :type_tag_id)
+    end
+    
+    def set_tag_collection
+      @tags_collection = Tag.all.collect {|t| [t.name, t.id]}
+    end
+   
+    def set_type_tags_collection
+      @type_tags_collection = TypeTag.all.collect {|t| [t.type_tag_name, t.id]}
+    end
 end

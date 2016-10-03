@@ -22,7 +22,7 @@ class UserManagementController < ApplicationController
       redirect_to user_management_index_path    
     else
       render 'new'
-    end 
+    end   
   end
 
   def show
@@ -41,6 +41,7 @@ class UserManagementController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }       
       end  
     end  
+    asd
   end
 
   def destroy

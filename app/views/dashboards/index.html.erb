@@ -1,0 +1,36 @@
+<div class="page-header">
+  <%= link_to ":(", class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to ":)", class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>What are you doing recently</h1>
+</div>
+
+<%= content_tag_for(:tr, @projects) do |project| %>
+<div class="container">
+
+  <div class="row">
+    Projects <%= project.name %> ||
+    <%= link_to "+New Tag", class: "btn btn-primary" %>
+  </div>
+
+  <div class="row">
+    <% project.tags.have_tag_type.each do |tag| %>
+      <div class="box">
+        <div class="col-xs-12 label-wrapper"><%= tag.name %></div>  
+        <div class="col-xs-12 label-wrapper">
+          <% tag.type_tag.detail_type_tags.each do |detail_type_tag| %>
+            <span class="label label-success"><%= "#{detail_type_tag.type_tag_value}" %> </span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <hr class="style14">
+</div>
+<% end %>  
