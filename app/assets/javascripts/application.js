@@ -14,7 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
+// require_tree .
 //= require select2-full
 //= require turbolinks
-//= require bootstrap/dropdown
+//= require devise/registrasions/new
+//= require projects

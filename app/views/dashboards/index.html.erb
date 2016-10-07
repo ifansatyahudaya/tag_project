@@ -1,4 +1,37 @@
-<div class="page-header">
+
+    <div class="container-fluid">
+      <h2>Alarm me after</h2>
+      <div class="row">    
+        <div class="col-md-6">
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked> 1 Hour
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option2" autocomplete="off"> 2 Hour
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option3" autocomplete="off"> 3 Hour
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option3" autocomplete="off"> 4 Hour
+            </label>
+          </div>
+        </div>  
+        <div class="col-md-6">         
+          <div class="input-group stylish-input-group">
+            
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button">Go!</button>
+            </span>
+            
+          </div>
+        </div>  
+      </div>
+    </div>
+<div class="page-header">  
+  <hr class="style14">
   <%= link_to ":(", class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
@@ -7,15 +40,16 @@
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
-  <h1>What are you doing recently</h1>
+  <h1>What are you doing recently?</h1>
 </div>
 
 <%= content_tag_for(:tr, @projects) do |project| %>
 <div class="container">
 
   <div class="row">
-    Projects <%= project.name %> ||
-    <%= link_to "+New Tag", class: "btn btn-primary" %>
+    <%= link_to "#{project.name}", project, class: "btn btn-primary btn-xs" %>
+      ||
+    <%= link_to "+ New Tag", edit_project_path(project),class: "btn btn-info btn-xs" %>
   </div>
 
   <div class="row">

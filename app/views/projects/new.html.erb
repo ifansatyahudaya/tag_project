@@ -4,6 +4,15 @@
     Back
   <% end %>
   <h1>New project</h1>
-</div>
+</div> 
+<%= render 'form' %> 
 
-<%= render 'form' %>
+<% content_for :javascript_in_body do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $("#new_project").click(function() {
+        $("myModal").modal();
+      })
+    });
+  <% end %>
+<% end %>

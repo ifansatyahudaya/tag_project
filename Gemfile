@@ -1,18 +1,16 @@
 source 'https://rubygems.org'
  
 gem 'rails_12factor', group: :production
-gem 'cancancan', '~> 1.10'  
-gem 'devise'
-gem 'bootstrap-sass'
-gem 'select2-rails'
-gem 'acts-as-taggable-on', '~> 4.0'
-gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'
+gem 'cancancan', '~> 1.10' #authorization management
+gem 'devise' #authentication management
+gem 'bootstrap-sass', '~> 3.3.6' #bootstrap stylesheet
+gem 'sass-rails', '>= 3.2' #css compiler
+gem 'select2-rails' #beautify select element html
+gem 'acts-as-taggable-on', '~> 4.0' #tagging
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -31,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "binding_of_caller"
 gem 'pg'
 gem 'pg', group: :production
+gem 'annotate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
