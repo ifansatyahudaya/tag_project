@@ -7,9 +7,9 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     if current_user.role.name == "super admin"
-      @projects = Project.all.order(user_id: :asc)  
+      @projects = Project.all.order(user_id: :asc)
     elsif current_user.role.name == "admin"
-      @projects = Project.by_company_id(current_user.company_id).order(updated_at: :desc)  
+      @projects = Project.by_company_id(current_user.company_id).order(updated_at: :desc)
     else
       @projects = Project.joins(:project_users).where("project_users.user_id = :user_id OR projects.user_id = :user_id", user_id: current_user.id).order(updated_at: :desc)
     end
@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
     @project.user_id = current_user.id
     @project.company_id = current_user.company_id
     @project.tag_list.add(params[:project][:tag_list])
-    
+
     respond_to do |format|
       if @project.save
         @project.user_ids = params[:project][:user_ids]
@@ -99,6 +99,7 @@ class ProjectsController < ApplicationController
     end
 
     def set_users_collection
-      @users_collection = User.by_company_id(current_user.company_id).where.not(id: current_user.id).collect {|c| [c.name, c.id]}  
+      @users_collection = User.by_company_id(current_user.company_id).where.not(id: current_user.id).collect {|c| [c.name, c.id]}
     end
 end
+#cekson
